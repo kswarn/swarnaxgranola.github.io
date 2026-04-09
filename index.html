@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarna × Granola</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f9f7f4; --paper2: #f2efe9; --ink: #1a1814; --ink2: #2e2b26;
+    --muted: #7a7468; --dim: #b0a898; --rule: #e4e0d8; --rule2: #ede9e2;
+    --gran: #2e6b4f; --gran-lt: #edf5f1; --gran-mid: #3d8862;
+    --serif: 'Playfair Display', serif; --sans: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 13px; width: 100%; }
+
+  .top-rule { height: 3px; background: var(--ink); }
+
+  .header { padding: 32px 5%; border-bottom: 1px solid var(--rule); }
+  .header-inner { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+  .header-kicker { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gran); margin-bottom: 12px; }
+  .header-name { font-family: var(--serif); font-size: 3.2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; color: var(--ink); margin-bottom: 16px; }
+  .header-name em { font-style: normal; color: var(--gran); font-weight: 700; }
+  .header-desc { font-size: 0.83rem; color: var(--ink2); line-height: 1.72; max-width: 510px; }
+  .header-desc strong { color: var(--ink); font-weight: 500; }
+  .header-right { text-align: right; min-width: 200px; }
+  .contact-lines { font-family: var(--mono); font-size: 0.67rem; line-height: 2.1; color: var(--muted); }
+  .contact-lines a { color: var(--gran); text-decoration: none; }
+  .role-tag { display: inline-block; border: 1px solid var(--ink); font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); padding: 5px 12px; margin-top: 12px; }
+
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--rule); }
+  .stat { padding: 16px 5%; border-right: 1px solid var(--rule); background: var(--paper2); }
+  .stat:last-child { border-right: none; }
+  .stat-n { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--gran); line-height: 1; margin-bottom: 3px; }
+  .stat-l { font-size: 0.63rem; color: var(--muted); line-height: 1.3; }
+
+  .pull { padding: 16px 5%; border-bottom: 1px solid var(--rule); border-left: 3px solid var(--gran); background: var(--gran-lt); }
+  .pull-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gran); margin-bottom: 6px; }
+  .pull-text { font-family: var(--serif); font-size: 0.96rem; font-style: normal; color: var(--ink2); line-height: 1.6; }
+
+  .body { display: block; }
+  .body-main { padding: 32px 5%; }
+  .body-side { display: none; }
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--rule); background: var(--paper2); }
+  .bottom-col { padding: 28px 24px; border-right: 1px solid var(--rule); }
+  .bottom-col:first-child { padding-left: 5%; }
+  .bottom-col:last-child { border-right: none; padding-right: 5%; }
+
+  .sh { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .sh::after { content: ''; flex: 1; height: 1px; background: var(--rule2); }
+
+  .match-table { width: 100%; border-collapse: collapse; }
+  .match-table thead tr { border-bottom: 1.5px solid var(--ink); }
+  .match-table thead th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0 12px 8px 0; text-align: left; font-weight: 400; }
+  .match-table thead th:first-child { width: 27%; }
+  .match-table tbody tr { border-bottom: 1px solid var(--rule2); }
+  .match-table tbody tr:last-child { border-bottom: none; }
+  .match-table tbody td { padding: 11px 12px 11px 0; vertical-align: top; font-size: 0.77rem; }
+  .jd-col { color: var(--ink2); padding-right: 16px !important; }
+  .jd-tag { font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.04em; color: var(--gran); background: var(--gran-lt); padding: 2px 8px; border-radius: 2px; display: inline-block; margin-bottom: 4px; }
+  .how-col { color: #3a352e; line-height: 1.7; }
+  .how-col strong { color: var(--ink); font-weight: 500; }
+  .proof { display: inline-block; font-family: var(--mono); font-size: 0.63rem; color: var(--gran-mid); text-decoration: none; margin-top: 3px; border-bottom: 1px solid var(--gran-mid); padding-bottom: 1px; opacity: 0.75; }
+
+  .side-sec { margin-bottom: 22px; }
+  .side-sec:last-child { margin-bottom: 0; }
+  .build-item { padding: 10px 0; border-bottom: 1px solid var(--rule2); }
+  .build-item:last-child { border-bottom: none; }
+  .build-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .build-n { font-family: var(--mono); font-size: 0.6rem; color: var(--dim); }
+  .build-t { font-family: var(--serif); font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+  .build-area { margin-left: auto; font-family: var(--mono); font-size: 0.57rem; color: var(--muted); background: var(--paper); border: 1px solid var(--rule); padding: 1px 6px; border-radius: 2px; }
+  .build-d { font-size: 0.73rem; color: var(--muted); line-height: 1.55; }
+
+  .skill-row { margin-bottom: 9px; }
+  .skill-lbl { font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip { font-family: var(--mono); font-size: 0.62rem; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 2px; color: var(--ink2); background: var(--paper); }
+  .chip.hi { background: var(--gran-lt); border-color: rgba(46,107,79,0.3); color: var(--gran); font-weight: 500; }
+
+  .edu-item { margin-bottom: 9px; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-deg { font-weight: 500; font-size: 0.76rem; }
+  .edu-school { font-family: var(--mono); font-size: 0.66rem; color: var(--gran); margin-top: 2px; }
+  .edu-detail { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); margin-top: 1px; }
+
+  .personal-note {
+    padding: 28px 5%;
+    border-top: 1px solid var(--rule);
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .personal-note-label {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gran);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .personal-note-text {
+    font-family: var(--serif);
+    font-size: 0.92rem;
+    font-style: normal;
+    color: var(--ink2);
+    line-height: 1.75;
+  }
+  .personal-note-text strong { font-style: normal; font-weight: 600; color: var(--ink); }
+
+  .footer { border-top: 2px solid var(--ink); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; }
+  .footer-l { font-family: var(--mono); font-size: 0.63rem; color: var(--muted); }
+  .footer-r { font-family: var(--serif); font-style: italic; font-size: 0.85rem; color: var(--gran); }
+</style>
+</head>
+<body>
+
+<div class="top-rule"></div>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-kicker">Design Engineer · Granola · Application 2026</div>
+      <div class="header-name">Swarna<br><em>Kadagadkai</em></div>
+      <div class="header-desc">Design engineer with <strong>4+ years</strong> building B2B SaaS end to end — Figma and production React in the same sprint. I co-founded a SaaS product, built a design system used by 27 engineering teams, and shipped interfaces that earned direct praise from founders for craft. I want to work on a product that takes AI seriously as a tool for thinking — <strong>not as a replacement for it.</strong></div>
+    </div>
+    <div class="header-right">
+      <div class="contact-lines">
+        <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c3f3b2d3e222d272d282d2b2d28272d250c393829342d3f62292839">[email&#160;protected]</a></div>
+        <div>+1 (737) 419-0516</div>
+        <div>Austin, TX</div>
+        <div><a href="https://swarna.design">swarna.design</a></div>
+        <div>MS HCI · UT Austin · 2027</div>
+      </div>
+      <div class="role-tag">Internship · 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Years design and engineering</div></div>
+  <div class="stat"><div class="stat-n">52%</div><div class="stat-l">Dev time saved via design system</div></div>
+  <div class="stat"><div class="stat-n">35%</div><div class="stat-l">Adoption lift at Lloyd's Register</div></div>
+  <div class="stat"><div class="stat-n">56%</div><div class="stat-l">Faster demo creation at RevOwl</div></div>
+  <div class="stat"><div class="stat-n">27</div><div class="stat-l">Teams using design system I built</div></div>
+</div>
+
+<div class="pull">
+  <div class="pull-label">Why Granola</div>
+  <div class="pull-text">Granola's bet is that AI should enhance how people think in meetings, not transcribe over them. The design challenge is making that feel natural and trustworthy to people who spend hours a day inside it. Fit and finish matters enormously here, which is exactly what I care about.</div>
+</div>
+
+<div class="body">
+  <div class="body-main">
+    <div class="sh">What Granola needs · How I deliver</div>
+    <table class="match-table">
+      <thead><tr><th>Granola needs</th><th>How I deliver</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Figma + React/Tailwind</span><br>Prototype in code, ship to production, invent AI interaction patterns</td>
+          <td class="how-col">At <strong>Lloyd's Register</strong> I designed and built production interfaces in React/TypeScript. I built a Figma-to-code pipeline connecting design tokens to core components, adopted by 27 engineering teams.<br><a class="proof" href="https://canva.link/tbb5ovta0cuki0g" target="_blank">Lloyd's Register case study →</a></td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Fit and finish</span><br>People spend hours in Granola — craft matters at every level</td>
+          <td class="how-col">The Mito Health redesign received direct praise from founders for visual craft and product sense. At <strong>Lloyd's Register</strong> I designed within an existing system while raising the quality bar. At <strong>UTickets</strong> I delivered pixel-perfect mobile screens alongside the full research-to-prototype cycle.<br><a class="proof" href="https://www.swarna.design/projects/mito-health" target="_blank">Mito Health case study →</a></td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">AI interaction invention</span><br>Design patterns that don't exist yet for meeting intelligence</td>
+          <td class="how-col">My HCI research at UT Austin focuses on trust calibration in AI-assisted interfaces: how people decide what to believe from AI output and when to intervene.</td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Work shoulder to shoulder</span><br>Sit directly alongside Chris and Sam on early features</td>
+          <td class="how-col">I presented the Mito Health redesign and full rationale directly to founders and defended every decision. At <strong>RevOwl</strong> I was co-founder and I understand what founders need from a designer: clarity, speed, and someone who communicates why. At SaaSPay I shipped an MVP in 6 weeks working alongside the founding team.</td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">User research as habit</span><br>Spend hours with users each week</td>
+          <td class="how-col">At <strong>UTickets</strong> I ran 30+ user interviews revealing 88% abandonment on existing platforms, that shaped every design decision. At Mito Health I mapped user journeys across 5 lifecycle stages before prototyping a single screen. At RevOwl I ran feedback sessions every sprint and used churn analytics to halve churn from 7% to 3.5%.<br><a class="proof" href="https://swarna.design/utickets" target="_blank">UTickets case study →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="bottom-row">
+  <div class="bottom-col">
+    <div class="sh">What I'd build first</div>
+    <div class="build-item">
+      <div class="build-meta"><span class="build-n">01</span><span class="build-t">Note Visibility Intent</span><span class="build-area">Trust</span></div>
+      <div class="build-d">Meeting notes contain sensitive things like candid feedback, salary discussions, and strategic decisions. As Granola moves into teams, the UX problem is helping users build a reliable mental model of what's safe to share before they share it.</div>
+    </div>
+    <div class="build-item">
+      <div class="build-meta"><span class="build-n">02</span><span class="build-t">Meeting Type Mental Models</span><span class="build-area">Product</span></div>
+      <div class="build-d">A 1:1, a board meeting, and a brainstorm have completely different norms around what gets recorded and who sees it. The UX problem is setting the right defaults and expectations per meeting type so that we reduce the trust hesitation that stops people from letting Granola run in the first place.</div>
+    </div>
+  </div>
+
+  <div class="bottom-col">
+    <div class="sh">Skills</div>
+    <div class="skill-row">
+      <div class="skill-lbl">Design</div>
+      <div class="chips"><span class="chip hi">Figma</span><span class="chip hi">Prototyping</span><span class="chip hi">Design Systems</span><span class="chip">User Research</span><span class="chip">Interaction Design</span></div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-lbl">Engineering</div>
+      <div class="chips"><span class="chip hi">React</span><span class="chip hi">TypeScript</span><span class="chip hi">Tailwind</span><span class="chip hi">HTML/CSS</span><span class="chip">Storybook</span></div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-lbl">AI Tools</div>
+      <div class="chips"><span class="chip hi">Cursor</span><span class="chip hi">Claude</span><span class="chip">v0</span></div>
+    </div>
+  </div>
+
+  <div class="bottom-col">
+    <div class="sh">Education</div>
+    <div class="edu-item">
+      <div class="edu-deg">MS Information Studies, HCI</div>
+      <div class="edu-school">University of Texas, Austin</div>
+      <div class="edu-detail">Graduating May 2027</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-deg">BE Information Science</div>
+      <div class="edu-school">JSS Academy of Technical Education</div>
+      <div class="edu-detail">Aug 2021 · GPA 3.24 / 4.0</div>
+    </div>
+  </div>
+</div>
+
+<div class="personal-note">
+  <div class="personal-note-label">A personal note</div>
+  <div class="personal-note-text">
+    I have been an active everyday user of Granola for the last <strong>8 months</strong>. I use it to capture notes during user interviews, usability tests, qualitative research, contextual interviews, and project team meetings. Before Granola, I would struggle to take notes and pay attention to the conversation, steer and lead it in the right direction, and be fully present. I would rely on short-term memory to hold onto insights and it did not bode well. Granola gave me back the ability to actually listen. I want to work with the team to help make it even better.
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-l">swarnakadagadkai@utexas.edu · +1 (737) 419-0516 · Austin, TX</div>
+  <div class="footer-r">swarna.design</div>
+</div>
+
+</body>
+</html>
